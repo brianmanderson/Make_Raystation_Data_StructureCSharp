@@ -24,7 +24,6 @@ namespace DataBaseStructure
             public string Name { get; set; }
             public double MassDensity { get; set; }
         }
-
         public class OrganDataClass
         {
             public string OrganType { get; set; }
@@ -64,7 +63,7 @@ namespace DataBaseStructure
         public class RegionOfInterest
         {
             public string Name { get; set; }
-            public int RS_Number { get; set;}
+            public int RS_Number { get; set; }
             public int Referenced_Base_ROI_UID { get; set; }
             public double Volume { get; set; }
             public double HU_Min { get; set; }
@@ -115,7 +114,7 @@ namespace DataBaseStructure
             public string Name { get; set; }
             public int Referenced_POI_UID { get; set; }
             public int Referenced_Base_POI_UID { get; set; }
-            public int RS_Number { get; set;}
+            public int RS_Number { get; set; }
             public int Dose_POI_UID { get; set; }
         }
         public class DoseSpecificationPointClass
@@ -157,6 +156,77 @@ namespace DataBaseStructure
 
 
             public double GantryAngle { get; set; }
+        }
+        public class MachineReferenceClass
+        {
+            public string MachineName { get; set; }
+            public DateTimeClass CommissioningTime { get; set; } = null;
+        }
+        public class BeamSetClass
+        {
+            public int NumberOfFractions { get; set; }
+            public int RS_BeamNumber { get; set; }
+            public int BeamSetUID { get; set; }
+            public string DicomPlanLabel { get; set; }
+            public Dictionary<int, PrescriptionClass> Prescriptions { get; set; }
+            public PrescriptionClass Primary_Prescription { get; set; } = null;
+            public int Primary_Prescription_UID { get; set; }
+            public string PlanIntent { get; set; }
+            public string PlanGenerationTechnique { get; set; }
+            public string Modality { get; set; }
+            public Dictionary<int, BeamClass> Beams { get; set; }
+            public MachineReferenceClass MachineReference { get; set; } = null;
+        }
+        public class PlanOptimizationClass
+        {
+            public bool AutoScaleToPrescription { get; set; }
+            public List<int> Referenced_BeamSetsUIDs { get; set; }
+            public List<string> Referenced_BeamSetsNames { get; set; }
+            public int Optimizer_UID { get; set; }
+            public Dictionary<int, RegionOfInterestDose> DoseROIs { get; set; }
+            public Dictionary<int, PointOfInterestDose> DosePOIs { get; set; }
+        }
+        public class ReviewClass
+        {
+            public string ApprovalStatus { get; set; }
+            public string ReviewerName { get; set; }
+            public DateTimeClass ReviewTime { get; set; }
+
+        }
+        public class TreatmentPlanClass
+        {
+            public string PlanName { get; set; }
+            public string PlannedBy { get; set; } = null;
+            public int TreatmentPlan_UID { get; set; }
+            public int FractionNumber { get; set; }
+            public Dictionary<int, BeamSetClass> BeamSets { get; set; }
+            public Dictionary<int, PlanOptimizationClass> Optimizations { get; set; }
+            public int Referenced_Exam_UID { get; set; }
+            public ReviewClass Review { get; set; } = null;
+        }
+        public class CaseClass
+        {
+            public string CaseName { get; set; }
+            public int Case_UID { get; set; }
+            public string BodySite { get; set; }
+            public Dictionary<int, RegionOfInterestBase> Base_ROIs { get; set; }
+            public Dictionary<int, PointOfInterestBase> Base_POIs { get; set; }
+            public Dictionary<int, ExaminationClass> Examinations { get; set; }
+            public Dictionary<int, TreatmentPlanClass> TreatmentPlans { get; set; }
+        }
+        public class PatientClass
+        {
+            public string RS_UID { get; set; }
+            public int Patient_UID { get; set; }
+            public Dictionary<int, CaseClass> Cases { get; set; }
+            public DateTimeClass DateLastModified { get; set; }
+            public string MRN { get; set; }
+        }
+        public class PatientDatabase
+        {
+            public string DBName { get; set; }
+            public Dictionary<string, PatientClass> Patients { get; set; }
+            public bool Updated { get; set; }
         }
     }
 }
