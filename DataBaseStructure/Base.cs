@@ -153,9 +153,6 @@ namespace DataBaseStructure
             public int RS_BeamNumber { get; set; }
             public int BeamNumber_UID { get; set; }
             public double SSD { get; set; }
-
-
-            public double GantryAngle { get; set; }
         }
         public class MachineReferenceClass
         {
