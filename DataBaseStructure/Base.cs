@@ -132,13 +132,14 @@ namespace DataBaseStructure.Base
         public string PrescriptionType { get; set; }
         public RegionOfInterest Referenced_ROI_Structure { get; set; }
         public PointOfInterest Referenced_POI_Structure { get; set; }
+        public DoseSpecificationPointClass DoseSpecificationPoint { get; set; } = null;
         public int NumberOfFractions { get; set; }
         public double Dose_per_Fraction { get; set; }
     }
     public class BeamClass
     {
         public string ArcRotationDirection { get; set; }
-        public double ArcStopGantryAngle { get; set; }
+        public double? ArcStopGantryAngle { get; set; } = null;
         public double CollimatorAngle { get; set; }
         public double BeamMU { get; set; }
         public string BeamQualityId { get; set; }

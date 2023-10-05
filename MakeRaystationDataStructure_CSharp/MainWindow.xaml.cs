@@ -14,7 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Text.Json;
 using DataBaseStructure.Base;
-
+using System.IO;
 
 namespace MakeRaystationDataStructure_CSharp
 {
@@ -26,6 +26,10 @@ namespace MakeRaystationDataStructure_CSharp
         public MainWindow()
         {
             InitializeComponent();
+            string file_name = @"C:\Users\markb\Modular_Projects\PatientDB_Deceased.json";
+            string jsonString = File.ReadAllText(file_name);
+            PatientDatabase database = JsonSerializer.Deserialize<PatientDatabase>(jsonString);
+            int x = 5;
         }
     }
 }
