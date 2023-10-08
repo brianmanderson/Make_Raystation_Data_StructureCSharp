@@ -73,4 +73,52 @@ namespace DataSearcher
             ROI_UID = roi.ROI_UID;
         }
     }
+    public class PrescriptionROIEval : RegionOfInterestVolumeEval
+    {
+        public int Prescription_UID;
+        public double DoseAbsoluteVolume_cc;
+        public double DoseValue_cGy;
+        public double DoseVolume_percent;
+        public double RelativePrescriptionLevel;
+        public string PrescriptionType;
+        public int NumberOfFractions;
+        public double Dose_per_Fraction;
+        public void set_rx_info(PrescriptionClass prescription)
+        {
+            Prescription_UID = prescription.Prescription_UID;
+            DoseAbsoluteVolume_cc = prescription.DoseAbsoluteVolume_cc;
+            DoseValue_cGy = prescription.DoseValue_cGy;
+            DoseVolume_percent = prescription.DoseVolume_percent;
+            RelativePrescriptionLevel = prescription.RelativePrescriptionLevel;
+            PrescriptionType = prescription.PrescriptionType;
+            NumberOfFractions = prescription.NumberOfFractions;
+            Dose_per_Fraction = prescription.Dose_per_Fraction;
+            set_roi_info(prescription.Referenced_ROI_Structure);
+        }
+    }
+    public class DataBaseEvaluation
+    {
+        public PatientDatabase Patient_DataBase;
+        public DataBaseEvaluation(PatientDatabase patient_DataBase)
+        {
+            Patient_DataBase = patient_DataBase;
+        }
+        public (PatientClass, CaseClass) return_all_info_from_roi_base(RegionOfInterestBase wanted_roi)
+        {
+            foreach(PatientClass patient in Patient_DataBase.Patients.Values)
+            {
+                foreach(CaseClass case_class in patient.Cases.Values)
+                {
+                    foreach(RegionOfInterestBase roi_base in case_class.Base_ROIs.Values)
+                    {
+                        if (roi_base.Base_ROI_UID == wanted_roi.Base_ROI_UID)
+                        {
+                            return (patient, case_class);
+                        }
+                    }
+                }
+            }
+            return (null, null);
+        }
+    }
 }
