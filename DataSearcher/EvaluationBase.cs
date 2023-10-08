@@ -120,5 +120,22 @@ namespace DataSearcher
             }
             return (null, null);
         }
+        public (PatientClass, CaseClass) return_all_info_from_poi_base(PointOfInterestBase wanted_poi)
+        {
+            foreach (PatientClass patient in Patient_DataBase.Patients.Values)
+            {
+                foreach (CaseClass case_class in patient.Cases.Values)
+                {
+                    foreach (PointOfInterestBase poi_base in case_class.Base_POIs.Values)
+                    {
+                        if (poi_base.Base_POI_UID == wanted_poi.Base_POI_UID)
+                        {
+                            return (patient, case_class);
+                        }
+                    }
+                }
+            }
+            return (null, null);
+        }
     }
 }
