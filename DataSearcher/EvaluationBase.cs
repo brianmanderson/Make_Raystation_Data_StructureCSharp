@@ -55,4 +55,22 @@ namespace DataSearcher
             Base_ROI_UID = roi_base.Base_ROI_UID;
         }
     }
+    public class RegionOfInterestVolumeEval : RegionOfInterestBaseEval
+    {
+        public double Volume;
+        public double HU_Min;
+        public double HU_Max;
+        public double HU_Average;
+        public bool Defined;
+        public int ROI_UID;
+        public void set_roi_info(RegionOfInterest roi)
+        {
+            ROI_Name = roi.Name;
+            Volume = roi.Volume;
+            HU_Max = roi.HU_Max;
+            HU_Average = roi.HU_Average;
+            HU_Min = roi.HU_Min;
+            ROI_UID = roi.ROI_UID;
+        }
+    }
 }
