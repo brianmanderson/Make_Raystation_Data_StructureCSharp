@@ -69,6 +69,11 @@ namespace DataBaseStructure.Base
         public int ROI_UID { get; set; }
 
     }
+    public class EquipmentInfoClass
+    {
+        public string FrameOfReference { get; set; }
+        public string Modality { get; set; }
+    }
     public class ExamInfo
     {
         public string ExamName { get; set; }
@@ -78,12 +83,7 @@ namespace DataBaseStructure.Base
         public string StudyDescription { get; set; }
         public DateTimeClass Exam_DateTime { get; set; } = null;
     }
-    public class EquipmentInfoClass
-    {
-        public string FrameOfReference { get; set; }
-        public string Modality { get; set; }
-    }
-    public class ExaminationClass : EquipmentInfoClass
+    public class ExaminationClass : ExamInfo
     {
         public int Exam_UID { get; set; }
         public EquipmentInfoClass EquipmentInfo { get; set; }
@@ -149,7 +149,7 @@ namespace DataBaseStructure.Base
         public string BeamName { get; set; }
         public int RS_BeamNumber { get; set; }
         public int BeamNumber_UID { get; set; }
-        public double SSD { get; set; }
+        public double? SSD { get; set; } = null;
     }
     public class MachineReferenceClass
     {
