@@ -14,8 +14,6 @@ namespace DataBaseStructure.Base
         public int hour { get; set; }
         public int minute { get; set; }
         public int second { get; set; }
-        public int microsecond { get; set; }
-        public int fold { get; set; }
     }
     public class RoiMaterial
     {
@@ -78,7 +76,7 @@ namespace DataBaseStructure.Base
         public string SeriesInstanceUID { get; set; }
         public string StudyInstanceUID { get; set; }
         public string StudyDescription { get; set; }
-        public DateTimeClass Exam_DateTime { get; set; }
+        public DateTimeClass Exam_DateTime { get; set; } = null;
     }
     public class EquipmentInfoClass
     {
@@ -130,8 +128,8 @@ namespace DataBaseStructure.Base
         public double DoseVolume_percent { get; set; }
         public double RelativePrescriptionLevel { get; set; }
         public string PrescriptionType { get; set; }
-        public RegionOfInterest Referenced_ROI_Structure { get; set; }
-        public PointOfInterest Referenced_POI_Structure { get; set; }
+        public RegionOfInterest Referenced_ROI_Structure { get; set; } = null;
+        public PointOfInterest Referenced_POI_Structure { get; set; } = null;
         public DoseSpecificationPointClass DoseSpecificationPoint { get; set; } = null;
         public int NumberOfFractions { get; set; }
         public double Dose_per_Fraction { get; set; }
