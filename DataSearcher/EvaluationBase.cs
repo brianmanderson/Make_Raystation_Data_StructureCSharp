@@ -31,13 +31,28 @@ namespace DataSearcher
             Case_UID = case_class.Case_UID;
         }
     }
-    public class ExamClassInfo : CaseClassEval
+    public class ExamClassEval : CaseClassEval
     {
         public string Exam_Name;
         public int Exam_UID;
         public void set_exam_info(ExaminationClass exam)
         {
             Exam_Name = exam.ExamName;
+            Exam_UID = exam.Exam_UID;
+        }
+    }
+    public class RegionOfInterestBaseEval : ExamClassEval
+    {
+        public string ROI_Name;
+        public int RS_Number;
+        public string Type;
+        public int Base_ROI_UID;
+        public void set_roi_base_info(RegionOfInterestBase roi_base)
+        {
+            ROI_Name = roi_base.Name;
+            RS_Number = roi_base.RS_Number;
+            Type = roi_base.Type;
+            Base_ROI_UID = roi_base.Base_ROI_UID;
         }
     }
 }
